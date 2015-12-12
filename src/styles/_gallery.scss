@@ -42,6 +42,8 @@ $transition: .5s;
     transition: opacity $transition;
   }
   &__author {
+    font-family: 'Crimson Text', serif;
+    white-space: nowrap;
     color: #ccc;
     transition: color $transition;
     &:hover {
