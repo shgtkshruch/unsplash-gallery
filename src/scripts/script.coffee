@@ -44,6 +44,6 @@ async.waterfall [
     ), (err, n) ->
       $ '#gallery'
         .append $fragment
-        cb1 null
+      cb1 null
 ], (err, results) ->
   console.log 'Initial rendering end'
