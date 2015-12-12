@@ -3,6 +3,7 @@ imageNum = 0
 imagesData = ''
 $fragment = $ document.createDocumentFragment()
 $gallery = $ '#gallery'
+$loading = $ '#loading'
 galleryTemplate = _.template $('#gallery-template').text()
 
 renderImages = (cb) ->
@@ -41,6 +42,7 @@ renderImages = (cb) ->
 
 async.series [
   (cb) ->
+    $loading.fadeIn()
     $.ajax
       url: 'https://unsplash.it/list'
       success: (data, status, xhr) ->
@@ -49,6 +51,7 @@ async.series [
   (cb) ->
     renderImages ->
       $gallery.append $fragment
+      $loading.fadeOut()
       cb null
 
 ], (err, results) ->
@@ -59,8 +62,10 @@ new Steady
     "max-bottom": 2000
   throttle: 500
   handler: (values, done) ->
+    $loading.fadeIn()
     imageNum = 0
     renderImages ->
       console.log 'renderng by scroll'
       $gallery.append $fragment
+      $loading.fadeOut()
       done()

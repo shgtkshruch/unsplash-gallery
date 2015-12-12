@@ -1,5 +1,6 @@
 .l {
   &-container {
+    position: relative;
     width: $width-img * 3 + $gutter * 2;
     margin-right: auto;
     margin-left: auto;
