@@ -1,28 +1,38 @@
 getRandomInt = (min, max) ->
   return Math.floor(Math.random() * (max - min + 1)) + min
 
-galleryTemplate = _.template $('#gallery-template').text()
-$fragment = $ document.createDocumentFragment()
-
 ids = []
-i = 0
-async.whilst (->
-  i < 12
-), ((callback) ->
-  id = getRandomInt 1, 100
-  if ids.indexOf(id) > -1
-    callback null, i
-    return
-  ids.push id
+imageNum = 0
+$fragment = $ document.createDocumentFragment()
+galleryTemplate = _.template $('#gallery-template').text()
 
-  $ '<img/>'
-    .attr 'src', 'https://unsplash.it/300?image=' + id
-    .on 'load', ->
-      $fragment.append galleryTemplate {id: id}
-      callback null, i++
-    .on 'error', ->
-      callback null, i
-), (err, n) ->
-  $ '#gallery'
-    .append $fragment
+async.waterfall [
+  (cb1) ->
+    $.ajax
+      url: 'https://unsplash.it/list'
+      success: (data, status, xhr) ->
+        cb1 null, data.length
 
+  (unsplashImagesNum, cb1) ->
+    async.whilst (->
+      imageNum < 12
+    ), ((cb2) ->
+      id = getRandomInt 1, unsplashImagesNum
+      if ids.indexOf(id) > -1
+        cb2 null, imageNum
+        return
+      ids.push id
+
+      $ '<img/>'
+        .attr 'src', 'https://unsplash.it/300?image=' + id
+        .on 'load', ->
+          $fragment.append galleryTemplate {id: id}
+          cb2 null, imageNum++
+        .on 'error', ->
+          cb2 null, imageNum
+    ), (err, n) ->
+      $ '#gallery'
+        .append $fragment
+        cb1 null
+], (err, results) ->
+  console.log 'Initial rendering end'
