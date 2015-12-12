@@ -6,16 +6,23 @@ $fragment = $ document.createDocumentFragment()
 
 ids = []
 i = 0
-while i < 12
+async.whilst (->
+  i < 12
+), ((callback) ->
   id = getRandomInt 1, 100
   if ids.indexOf(id) > -1
-    continue
-
+    callback null, i
+    return
   ids.push id
-  $fragment.append galleryTemplate {id: id}
 
-  i++
-
-$ '#gallery'
-  .append $fragment
+  $ '<img/>'
+    .attr 'src', 'https://unsplash.it/300?image=' + id
+    .on 'load', ->
+      $fragment.append galleryTemplate {id: id}
+      callback null, i++
+    .on 'error', ->
+      callback null, i
+), (err, n) ->
+  $ '#gallery'
+    .append $fragment
 
