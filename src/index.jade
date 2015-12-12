@@ -15,10 +15,18 @@ html(lang="ja")
     // endbuild
     link(rel='stylesheet', href='styles/style.css', media='all')
   body
-    h1 Hello Github Pages
+    .l-container
+      ul.gallery#gallery
+
+    script(type="text/tempalte" id="gallery-template")
+      li.gallery__item
+        a.gallery__img(href="#")
+          img(src!="https://unsplash.it/300?image=<%= i %>" alt="")
 
     // build:js scripts/vendor.js
     // bower:js
+    script(src='../bower_components/jquery/dist/jquery.js')
+    script(src='../bower_components/underscore/underscore.js')
     // endbower
     // endbuild
 
