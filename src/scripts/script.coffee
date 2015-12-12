@@ -59,7 +59,7 @@ async.series [
 
 new Steady
   conditions:
-    "max-bottom": 2000
+    "max-bottom": 500
   throttle: 500
   handler: (values, done) ->
     $loading.fadeIn()
