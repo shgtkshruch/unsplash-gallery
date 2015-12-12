@@ -20,8 +20,10 @@ html(lang="ja")
 
     script(type="text/tempalte" id="gallery-template")
       li.gallery__item
-        a.gallery__img(href="#")
+        a.gallery__img(href!="<%= postUrl %>" target="_blank")
           img(src!="https://unsplash.it/300?image=<%= id %>" alt="")
+        .gallery__data
+          a.gallery__author(href!="<%= authorUrl %>" target="_blank") <%= author %>
 
     // build:js scripts/vendor.js
     // bower:js
