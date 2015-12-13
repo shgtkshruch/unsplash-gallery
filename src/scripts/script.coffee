@@ -81,6 +81,8 @@ $gallery.on 'click', '.js-gallery__img', (e) ->
   src = $(@).find('img').attr('src')
   img.src = src.replace /300\?/, $window.width() + '/' + $window.height() + '/?'
   img.url = $(@).data('posturl')
+  img.author = $(@).data('author')
+  img.authorUrl = $(@).data('authorurl')
   $ '<img/>'
     .attr 'src', img.src
     .on 'load', ->

@@ -35,7 +35,7 @@ html(lang="ja")
 
     script(type="text/tempalte" id="gallery-template")
       li.gallery__item
-        .gallery__img.js-gallery__img(data-posturl!="<%= postUrl %>")
+        .gallery__img.js-gallery__img(data-posturl!="<%= postUrl %>" data-author!="<%= author %>" data-authorurl!="<%= authorUrl %>")
           img(src!="https://unsplash.it/300?image=<%= id %>" alt="")
         .gallery__data
           a.gallery__author(href!="<%= authorUrl %>" target="_blank") <%= author %>
@@ -44,6 +44,8 @@ html(lang="ja")
       .lightbox__header
         a.lightbox__link(href!="<%= url %>" target="_blank") View original
         .lightbox__btn#lightboxBtn
+      p.lightbox__author Photo by
+        a.lightbox__link(href!="<%= authorUrl %>" target="_blank") <%= author %>
       .lightbox__overlay#lightboxOverlay
       img(src!="<%= src %>" alt="")
 
