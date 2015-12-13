@@ -10,6 +10,7 @@ $lightbox = $ '#lightbox'
 $lightboxBtn = $ '#lightboxBtn'
 duration = 400
 galleryTemplate = _.template $('#gallery-template').text()
+lightboxTemplate = _.template $('#lightbox-template').text()
 
 renderImages = (cb) ->
   async.whilst (->
@@ -76,26 +77,23 @@ new Steady
       done()
 
 $gallery.on 'click', '.js-gallery__img', (e) ->
+  img = {}
   src = $(@).find('img').attr('src')
-  src = src.replace /300\?/, $window.width() + '/' + $window.height() + '/?'
+  img.src = src.replace /300\?/, $window.width() + '/' + $window.height() + '/?'
+  img.url = $(@).data('posturl')
   $ '<img/>'
-    .attr 'src', src
+    .attr 'src', img.src
     .on 'load', ->
-      $(@)
-        .appendTo $lightbox
-        .hide()
+      $lightbox
+        .append lightboxTemplate img
         .fadeIn duration
-      $lightbox.fadeIn duration
       $body.css
         overflow: 'hidden'
         height: '100%'
 
-$lightboxBtn.click (e) ->
-  $lightbox
-    .find 'img'
-    .fadeOut duration, ->
-      $(@).remove()
-      $body.css
-        overflow: 'auto'
-        height: 'auto'
-    $lightbox.fadeOut duration
+$lightbox.on 'click', '#lightboxBtn', (e) ->
+  $lightbox.fadeOut duration, ->
+    $(@).empty()
+    $body.css
+      overflow: 'auto'
+      height: 'auto'

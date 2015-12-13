@@ -3,15 +3,30 @@
   top: 0;
   left: 0;
   display: none;
+  &__header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding-top: 20px;
+    text-align: center;
+    z-index: 1;
+  }
+  &__link {
+    color: #ccc;
+    transition: $transition;
+    &:hover {
+      color: #fff;
+    }
+  }
   &__btn {
     $size: 75px;
-    position: fixed;
+    position: absolute;
     top: 20px;
     right: 20px;
     width: $size;
     height: $size;
     cursor: pointer;
-    z-index: 2;
     &::before,
     &::after {
       content: '';

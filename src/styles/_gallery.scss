@@ -1,5 +1,3 @@
-$transition: .5s;
-
 .gallery {
   &__item {
     position: relative;
@@ -56,7 +54,6 @@ $transition: .5s;
     transition: opacity $transition;
   }
   &__author {
-    font-family: 'Julius Sans One', sans-serif;
     white-space: nowrap;
     color: #ccc;
     transition: color $transition;
