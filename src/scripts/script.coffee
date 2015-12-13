@@ -78,7 +78,7 @@ new Steady
 $gallery.on 'click', '.js-gallery__img', (e) ->
   src = $(@).find('img').attr('src')
   src = src.replace /300\?/, $window.width() + '/' + $window.height() + '/?'
-  $ '<img id="lightbox__img"/>'
+  $ '<img/>'
     .attr 'src', src
     .on 'load', ->
       $(@)
