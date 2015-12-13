@@ -9,21 +9,32 @@ html(lang="ja")
     meta(content='keywords', name='keywords')
     meta(content='width=device-width, initial-scale=1' name='viewport')
     meta(content='telephone=no', name='format-detection')
-    link(href='https://fonts.googleapis.com/css?family=Crimson+Text' rel='stylesheet' type='text/css')
+    link(href='https://fonts.googleapis.com/css?family=Julius+Sans+One' rel='stylesheet' type='text/css')
+    link(href='https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css' rel='stylesheet')
     // build:css styles/vendor.css
     // bower:css
     link(rel='stylesheet', href='../bower_components/loaders.css/loaders.css')
+    link(rel='stylesheet', href='../bower_components/normalize-css/normalize.css')
     // endbower
     // endbuild
     link(rel='stylesheet', href='styles/style.css', media='all')
   body
-    .l-container
-      ul.clearfix.gallery#gallery
-    .loading#loading.load-inner.square-spin
-      div
-    .lightbox#lightbox
-      .lightbox__btn#lightboxBtn
-      .lightbox__overlay#lightboxOverlay
+    header.header
+      i.header__icon.fa.fa-camera
+      h1.header__title Unsplash Gallery
+      p.header__text Randomly display the photos of&nbsp;
+        a.header__link(href="https://unsplash.com/" target="_blank") unsplash&nbsp;
+        | using&nbsp;
+        a.header__link(href="https://unsplash.it/" target="_blank") Unsplash It
+
+    main
+      .l-container
+        ul.clearfix.gallery#gallery
+      .loading#loading.load-inner.square-spin
+        div
+      .lightbox#lightbox
+        .lightbox__btn#lightboxBtn
+        .lightbox__overlay#lightboxOverlay
 
     script(type="text/tempalte" id="gallery-template")
       li.gallery__item
