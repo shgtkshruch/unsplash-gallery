@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+  <head>
+    <meta charset="UTF-8">
+    <title>Unsplash Gallery</title>
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="author" name="shgtkshruch">
+    <meta content="description" name="Randomly display the photos of unsplash using Unsplash It">
+    <meta content="keywords" name="unsplash,images">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <link href="https://fonts.googleapis.com/css?family=Julius+Sans+One" rel="stylesheet" type="text/css">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles/vendor.css">
+    <link rel="stylesheet" href="styles/style.css" media="all">
+  </head>
+
+  <body>
+    <header class="header"><i class="header__icon fa fa-camera"></i>
+      <h1 class="header__title">Unsplash Gallery</h1>
+      <p class="header__text">Randomly display the photos of&nbsp;<a href="https://unsplash.com/" target="_blank" class="header__link">unsplash&nbsp;</a>using&nbsp;<a href="https://unsplash.it/" target="_blank" class="header__link">Unsplash It</a></p>
+    </header>
+    <main>
+      <div class="l-container">
+        <ul id="gallery" class="clearfix gallery"></ul>
+      </div>
+      <div id="loading" class="loading load-inner square-spin">
+        <div></div>
+      </div>
+      <div id="lightbox" class="lightbox"></div>
+    </main>
+    <script type="text/tempalte" id="gallery-template">
+      <li class="gallery__item">
+        <div data-posturl="<%= postUrl %>" data-author="<%= author %>" data-authorurl="<%= authorUrl %>" class="gallery__img js-gallery__img"><img src="https://unsplash.it/300?image=<%= id %>" alt=""></div>
+        <div class="gallery__data">
+          <a href="<%= authorUrl %>" target="_blank" class="gallery__author">
+            <%= author %>
+          </a>
+        </div>
+      </li>
+    </script>
+    <script type="text/tempalte" id="lightbox-template">
+      <div class="lightbox__header"><a href="<%= url %>" target="_blank" class="lightbox__link">View original</a>
+        <div id="lightboxBtn" class="lightbox__btn"></div>
+      </div>
+      <p class="lightbox__author">Photo by
+        <a href="<%= authorUrl %>" target="_blank" class="lightbox__link">
+          <%= author %>
+        </a>
+      </p>
+      <div id="lightboxOverlay" class="lightbox__overlay"></div><img src="<%= src %>" alt="">
+    </script>
+    <script src="scripts/vendor.js"></script>
+    <script src="scripts/main.js"></script>
+  </body>
+
+</html>
