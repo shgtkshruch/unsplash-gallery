@@ -4,11 +4,12 @@
   left: 0;
   display: none;
   &__btn {
+    $size: 75px;
     position: fixed;
     top: 20px;
     right: 20px;
-    width: 90px;
-    height: 90px;
+    width: $size;
+    height: $size;
     cursor: pointer;
     z-index: 2;
     &::before,
@@ -17,15 +18,24 @@
       position: absolute;
       top: 50%;
       left: 0;
-      width: 90px;
+      width: $size;
       height: 1px;
       background-color: #fff;
+      transition: transform .3s;
     }
     &::before {
       transform: rotate(45deg);
     }
     &::after {
       transform: rotate(-45deg);
+    }
+    &:hover {
+      &::before {
+        transform: rotate(135deg);
+      }
+      &::after {
+        transform: rotate(45deg);
+      }
     }
   }
   &__overlay {

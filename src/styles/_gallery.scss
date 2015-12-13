@@ -20,6 +20,7 @@ $transition: .5s;
   &__img {
     position: relative;
     display: block;
+    cursor: pointer;
     &:after {
       content: '';
       position: absolute;
