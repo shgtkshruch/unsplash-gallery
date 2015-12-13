@@ -21,10 +21,13 @@ html(lang="ja")
       ul.clearfix.gallery#gallery
     .loading#loading.load-inner.square-spin
       div
+    .lightbox#lightbox
+      .lightbox__btn#lightboxBtn
+      .lightbox__overlay#lightboxOverlay
 
     script(type="text/tempalte" id="gallery-template")
       li.gallery__item
-        a.gallery__img(href!="<%= postUrl %>" target="_blank")
+        .gallery__img.js-gallery__img(data-posturl!="<%= postUrl %>" target="_blank")
           img(src!="https://unsplash.it/300?image=<%= id %>" alt="")
         .gallery__data
           a.gallery__author(href!="<%= authorUrl %>" target="_blank") <%= author %>

@@ -4,6 +4,11 @@ imagesData = ''
 $fragment = $ document.createDocumentFragment()
 $gallery = $ '#gallery'
 $loading = $ '#loading'
+$body = $ 'body'
+$window = $ window
+$lightbox = $ '#lightbox'
+$lightboxBtn = $ '#lightboxBtn'
+duration = 400
 galleryTemplate = _.template $('#gallery-template').text()
 
 renderImages = (cb) ->
@@ -69,3 +74,28 @@ new Steady
       $gallery.append $fragment
       $loading.fadeOut()
       done()
+
+$gallery.on 'click', '.js-gallery__img', (e) ->
+  src = $(@).find('img').attr('src')
+  src = src.replace /300\?/, $window.width() + '/' + $window.height() + '/?'
+  $ '<img id="lightbox__img"/>'
+    .attr 'src', src
+    .on 'load', ->
+      $(@)
+        .appendTo $lightbox
+        .hide()
+        .fadeIn duration
+      $lightbox.fadeIn duration
+      $body.css
+        overflow: 'hidden'
+        height: '100%'
+
+$lightboxBtn.click (e) ->
+  $lightbox
+    .find 'img'
+    .fadeOut duration, ->
+      $(@).remove()
+      $body.css
+        overflow: 'auto'
+        height: 'auto'
+    $lightbox.fadeOut duration
