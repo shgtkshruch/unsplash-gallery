@@ -3,10 +3,23 @@ $transition: .5s;
 .gallery {
   &__item {
     position: relative;
-    float: left;
+    max-width: $width-img;
+    margin-right: auto;
     margin-bottom: $gutter;
-    &:not(:nth-child(3n)) {
-      margin-right: $gutter;
+    margin-left: auto;
+    @media (min-width: $screen-sm) {
+      float: left;
+      &:nth-child(2n) {
+        margin-left: $gutter;
+      }
+    }
+    @media (min-width: $screen-md) {
+      &:nth-child(2n) {
+        margin-left: 0;
+      }
+      &:not(:nth-child(3n)) {
+        margin-right: $gutter;
+      }
     }
     &:hover {
       .gallery__img:after {

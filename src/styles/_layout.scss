@@ -1,8 +1,13 @@
 .l {
   &-container {
     position: relative;
-    width: $width-img * 3 + $gutter * 2;
     margin-right: auto;
     margin-left: auto;
+    @media (min-width: $screen-sm) {
+      width: $width-img * 2 + $gutter;
+    }
+    @media (min-width: $screen-md) {
+      width: $width-main;
+    }
   }
 }

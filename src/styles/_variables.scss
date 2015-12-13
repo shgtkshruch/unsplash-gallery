@@ -1,2 +1,7 @@
 $width-img: 300px;
 $gutter: 25px;
+$width-main: $width-img * 3 + $gutter * 2;
+
+$screen-xs: 480px;
+$screen-sm: 768px;
+$screen-md: $width-main;
