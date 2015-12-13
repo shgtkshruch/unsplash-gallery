@@ -1,5 +1,5 @@
 # Unsplash Gallery
-Randomly display the photos of unsplash using Unsplash It
+Randomly display the photos of [Unsplash](https://unsplash.com/) using [Unsplash It](https://unsplash.it/).
 
 [http://shgtkshruch.github.io/unsplash-gallery/](http://shgtkshruch.github.io/unsplash-gallery/)
 
