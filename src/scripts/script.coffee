@@ -7,7 +7,6 @@ $loading = $ '#loading'
 $body = $ 'body'
 $window = $ window
 $lightbox = $ '#lightbox'
-$lightboxBtn = $ '#lightboxBtn'
 duration = 400
 galleryTemplate = _.template $('#gallery-template').text()
 lightboxTemplate = _.template $('#lightbox-template').text()
@@ -48,7 +47,7 @@ renderImages = (cb) ->
 
 async.series [
   (cb) ->
-    $loading.fadeIn()
+    $loading.show()
     $.ajax
       url: 'https://unsplash.it/list'
       success: (data, status, xhr) ->
@@ -57,37 +56,35 @@ async.series [
   (cb) ->
     renderImages ->
       $gallery.append $fragment
-      $loading.fadeOut()
+      $loading.fadeOut duration
       cb null
 
 ], (err, results) ->
-  console.log 'Initial rendering end'
 
 new Steady
   conditions:
-    "max-bottom": 500
+    'max-bottom': 500
   throttle: 500
   handler: (values, done) ->
-    $loading.fadeIn()
+    $loading.fadeIn duration
     imageNum = 0
     renderImages ->
-      console.log 'renderng by scroll'
       $gallery.append $fragment
-      $loading.fadeOut()
+      $loading.fadeOut duration
       done()
 
 $gallery.on 'click', '.js-gallery__img', (e) ->
-  img = {}
+  image = {}
   src = $(@).find('img').attr('src')
-  img.src = src.replace /300\?/, $window.width() + '/' + $window.height() + '/?'
-  img.url = $(@).data('posturl')
-  img.author = $(@).data('author')
-  img.authorUrl = $(@).data('authorurl')
+  image.src = src.replace /300\?/, $window.width() + '/' + $window.height() + '/?'
+  image.url = $(@).data('posturl')
+  image.author = $(@).data('author')
+  image.authorUrl = $(@).data('authorurl')
   $ '<img/>'
-    .attr 'src', img.src
+    .attr 'src', image.src
     .on 'load', ->
       $lightbox
-        .append lightboxTemplate img
+        .append lightboxTemplate image
         .fadeIn duration
       $body.css
         overflow: 'hidden'
