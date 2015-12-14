@@ -33,6 +33,9 @@ html(lang="ja")
         div
       .lightbox#lightbox
 
+    .githubCorner
+      include partials/githubCorner
+
     script(type="text/tempalte" id="gallery-template")
       li.gallery__item
         .gallery__img.js-gallery__img(data-posturl!="<%= postUrl %>" data-author!="<%= author %>" data-authorurl!="<%= authorUrl %>")
