@@ -219,6 +219,13 @@ p {
   background: linear-gradient(to bottom, rgba(0, 0, 0, 0.7) 0%, transparent 15%, transparent 85%, rgba(0, 0, 0, 0.7) 100%);
 }
 
+.githubCorner {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: -1;
+}
+
 .clearfix::before,
 .clearfix::after {
   display: table;
