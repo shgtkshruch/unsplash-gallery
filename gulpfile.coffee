@@ -76,12 +76,12 @@ gulp.task 'sass', ->
     .pipe browserSync.reload
       stream: true
 
-gulp.task 'coffee', ->
-  gulp.src config.src + '/scripts/*.coffee'
+gulp.task 'javascript', ->
+  gulp.src config.src + '/scripts/*.js'
     .pipe $.plumber()
     .pipe $.changed config.dest,
       extension: '.js'
-    .pipe $.coffee()
+    .pipe $.babel()
     .pipe gulp.dest config.dest + '/scripts'
     .pipe browserSync.reload
       stream: true
@@ -99,13 +99,13 @@ gulp.task 'clean', ->
 gulp.task 'publish', ->
   ghpages.publish path.join __dirname, config.dest
 
-gulp.task 'default', ['jade', 'sass', 'coffee', 'image', 'browser-sync'], ->
+gulp.task 'default', ['jade', 'sass', 'javascript', 'image', 'browser-sync'], ->
   gulp.watch config.src + '/**/*.jade', ['jade']
   gulp.watch config.src + '/styles/*.scss', ['sass']
-  gulp.watch config.src + '/scripts/*.coffee', ['coffee']
+  gulp.watch config.src + '/scripts/*.js', ['javascript']
   gulp.watch config.src + '/images/*', ['image']
 
-gulp.task 'prebuild', ['html', 'sass', 'coffee', 'image']
+gulp.task 'prebuild', ['html', 'sass', 'javascript', 'image']
 
 gulp.task 'build', ['prebuild'], ->
   gulp.start 'clean'
